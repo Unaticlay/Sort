@@ -1,26 +1,25 @@
 public class Sort
 {
   
-  public static int[] BubbleSort(int[] data)
+  public static <T extends Comparable<? super T>> T[] BubbleSort(T[] data)
    {
       for (int i = 0; i < (data.length - 1); i ++)
       {
          for (int j = 0; j < (data.length - 1 - i); j ++)
          {
-            if (data[j] > data[j + 1])
+            if (data[j].compareTo(data[j + 1]) > 0)
             {
-               int temp = data[j + 1];
+               T temp = data[j + 1];
                data[j + 1] = data[j];
                data[j] = temp;
             } 
          }
       }
+      
       return data;
    }
-  
-  
-  
-  public static int[] SelectionSort(int[] data)
+   
+   public static <T extends Comparable<? super T>> T[] SelectionSort(T[] data)
    {
       for (int i = 0; i < (data.length - 1); i ++)
       {
@@ -29,11 +28,11 @@ public class Sort
          
          for (int j = (i + 1); j < data.length; j ++)
          {
-            if (data[j] < data[temp])
+            if (data[j].compareTo(data[temp]) < 0)
                temp = j;
          }
          
-         int piece = data[index];
+         T piece = data[index];
          data[index] = data[temp];
          data[temp] = piece;
       }
