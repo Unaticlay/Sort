@@ -39,27 +39,17 @@ public class Sort
       return data;
    }
 
-   public static <T extends Comparable<? super T>> T[] InsertionSort (T[] data)
+   public static <T extends Comparable<? super T>> T[] InsertionSort(T[] data)
    {
       for (int i = 1; i < data.length; i ++)
       {
-         int index = -1;
-         for (int j = 0; j < i; j ++)
+         int index = i;
+         while ((index > 0) && (data[index].compareTo(data[index - 1]) < 0))
          {
-            if ((data[i].compareTo(data[j]) < 0) && (index < 0))
-               index = j;
-         }
-
-
-         T temp = data[i];
-         if (index != -1)
-         {
-            for (int j = index; j < (i + 1); j++)
-            {
-               T hold = data[j];
-               data[j] = temp;
-               temp = hold;
-            }
+            T temp = data[index];
+            data[index] = data[index - 1];
+            data[index - 1] = temp;
+            index --;
          }
       }
 
